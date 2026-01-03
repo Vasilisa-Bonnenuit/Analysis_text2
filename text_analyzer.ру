@@ -1,30 +1,33 @@
 def conut_words(text):
 \"\"\"Подсчитывает количество слов в тексте\"\"\"
-words = text.split()
-return len(words)
+    words = text.split()
+    return len(words)
 def count_lines(text):
 \"\"\"Подсчитывает количество строк в тексте\"\"\"
-lines = text.split('\n')
-return len(lines)
+    lines = text.split('\n')
+    return len(lines)
 <<<<<<< HEAD
 def count_characters(text):
 \"\"\"Подсчитывает количество символов(без пробелов)\"\"\"
-return len(text.replace(" "," ").replace("\n",""))
+    return len(text.replace(" "," ").replace("\n",""))
 =======
 def analyze_sentiment(text):
 \"\"\"Анализирует тональность текста\"\"\"
-pozitive_words = ['хорошо','отлично','прекрасно','великолепно']
-negative_words = ['плохо','ужасно','отвратительно','кошмар']
-score = 0
-text_lower = text.iower()
-for word in text_lower.split():
-if word in positive_words:
-score +=1
-elif word in negative_words:
-score -=1
-if score >0:
-return"positive"
-elif score <0:
+    pozitive_words = ['хорошо','отлично','прекрасно','великолепно']
+    negative_words = ['плохо','ужасно','отвратительно','кошмар']
+    score = 0
+    text_lower = text.iower()
+    for word in text_lower.split():
+        if word in positive_words:
+            score +=1
+        elif word in negative_words:
+            score -=1
+
+        if score >0:
+            return"positive"
+        elif score <0:
+            return "negative"
+        return "neutral"
 >>>>>>> feature/seniment-analysis
 
 def extract_keywords(text, n=5):
@@ -37,3 +40,11 @@ def extract_keywords(text, n=5):
     
     sorted_words = sorted(word_count.items(), key=lambda x: x[1], reverse=True) 
     return [word for word, count in sorted words[:n]]
+    
+def text_statistics(text):
+    ""Полная статистика текста"" 
+    return {
+    'words': count_words(text),
+    'characters': count_characters(text),
+    'sentiment': analyze_sentiment(text)
+}
