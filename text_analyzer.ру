@@ -1,18 +1,24 @@
 def conut_words(text):
-\"\"\"Подсчитывает количество слов в тексте\"\"\"
+    """Подсчитывает количество слов в тексте"""
     words = text.split()
     return len(words)
+
+
 def count_lines(text):
-\"\"\"Подсчитывает количество строк в тексте\"\"\"
+    """Подсчитывает количество строк в тексте"""
     lines = text.split('\n')
     return len(lines)
-<<<<<<< HEAD
+
+
+
 def count_characters(text):
-\"\"\"Подсчитывает количество символов(без пробелов)\"\"\"
+    """Подсчитывает количество символов(без пробелов)"""
     return len(text.replace(" "," ").replace("\n",""))
-=======
+
+
+
 def analyze_sentiment(text):
-\"\"\"Анализирует тональность текста\"\"\"
+    """Анализирует тональность текста"""
     pozitive_words = ['хорошо','отлично','прекрасно','великолепно']
     negative_words = ['плохо','ужасно','отвратительно','кошмар']
     score = 0
@@ -28,23 +34,22 @@ def analyze_sentiment(text):
         elif score <0:
             return "negative"
         return "neutral"
->>>>>>> feature/seniment-analysis
 
 def extract_keywords(text, n=5):
-"""Извлекает n самых частых слов""
+    """Извлекает n самых частых слов"""
     words = text.lower().split()
     word_count = {}
-        for word in words:
+    for word in words:
         if len(word) > 3: # Игнорируем короткие слова
             word_count[word] = word_count.get(word, 0) + 1
     
     sorted_words = sorted(word_count.items(), key=lambda x: x[1], reverse=True) 
-    return [word for word, count in sorted words[:n]]
+    return [word for word, count in sorted(words[:n])]
     
 def text_statistics(text):
-    ""Полная статистика текста"" 
+    """Полная статистика текста"""
     return {
-    'words': count_words(text),
-    'characters': count_characters(text),
-    'sentiment': analyze_sentiment(text)
+        'words': count_words(text),
+        'characters': count_characters(text),
+        'sentiment': analyze_sentiment(text)
 }
